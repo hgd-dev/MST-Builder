@@ -97,6 +97,13 @@ void perform_kruskal()
         ++edge_index;
     }
 }
+void aggregate_weight_kruskal() {
+    int all_weight_kruskal = 0;
+    for (weighted_edge b : mst_edges_kruskal) {
+        all_weight_kruskal += b.weight;
+    }
+    cout << "\nAggregate Minimum Spanning Tree Weight: " << all_weight_kruskal << '\n';
+}
 int main()
 {
     string temp;
@@ -184,5 +191,6 @@ int main()
     for (weighted_edge b : mst_edges_kruskal) {
         cout << "  Nodes: { " << b.node1 << ' ' << b.node2 << " }, Weight: " << b.weight << '\n';
     }
+    aggregate_weight_kruskal();
     return 0;
 }
