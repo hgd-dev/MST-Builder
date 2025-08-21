@@ -1,0 +1,86 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'   # Only runs on version tags like v1.0.0
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+#      - name: Setup CMake
+#        uses: jwlawson/actions-setup-cmake@v2
+
+      - name: Create build directory
+        run: mkdir -p build
+
+      - name: Build executable
+        run: |
+          cd build
+          cmake .. -DCMAKE_BUILD_TYPE=Release
+          cmake --build . --config Release
+
+      - name: Package Linux
+        if: runner.os == 'Linux'
+        run: |
+          cd build
+          tar -czf MST-Builder-Linux.tar.gz MSTBuilder
+      - name: Package macOS
+        if: runner.os == 'macOS'
+        run: |
+          cd build
+          zip -r MST-Builder-macOS.zip MSTBuilder
+      - name: Package Windows
+        if: runner.os == 'Windows'
+        run: |
+          cd build
+          Compress-Archive -Path Release/MSTBuilder.exe -DestinationPath MST-Builder-Windows.zip     
+
+      - name: Upload Linux artifact
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: MST-Builder-Linux
+          path: build/MST-Builder-Linux.tar.gz
+      
+      - name: Upload macOS artifact
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: MST-Builder-macOS
+          path: build/MST-Builder-macOS.zip
+      
+      - name: Upload Windows artifact
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: MST-Builder-Windows
+          path: build/MST-Builder-Windows.zip
+
+          
+      - name: Upload to GitHub Release Linux
+        if: runner.os == 'Linux'
+        run: |
+          cd build
+          gh release upload latest MST-Builder-Linux.tar.gz --clobber || echo "Release not found"
+      - name: Upload to GitHub Release macOS
+        if: runner.os == 'macOS'
+        run: |
+          cd build
+          gh release upload latest MST-Builder-macOS.zip --clobber || echo "Release not found"
+      - name: Upload to GitHub Release Windows
+        if: runner.os == 'Windows'
+        run: |
+          cd build
+          gh release upload latest MST-Builder-Windows.zip --clobber || echo "Release not found"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
