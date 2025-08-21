@@ -8,7 +8,6 @@
 #include <random>
 #include <time.h>
 #include <iterator>
-#include <conio.h>
 using namespace std;
 
 struct weighted_edge {
@@ -520,29 +519,28 @@ void double_main() {
 
 int main() {
     srand(time(0));
-    //build a mst from a graph
     cout << "\nWelcome to MST Builder!\n\n";
     while (true) {
         cout << "Select function from menu below to build a minimum spanning tree (MST):\n";
-        cout << "  Press k to execute Kruskal's MST Algorithm\n";
-        cout << "  Press p to execute Prim's MST Algorithm\n";
-        cout << "  Press b to execute both MST algorithms\n";
-        cout << "  Press e to exit this program\n";
-        while (!_kbhit()) {}
-        char key_pressed = _getch();
-        switch (key_pressed) {
+        cout << "  Enter k to execute Kruskal's MST Algorithm\n";
+        cout << "  Enter p to execute Prim's MST Algorithm\n";
+        cout << "  Enter b to execute both MST algorithms\n";
+        cout << "  Enter e to exit this program\n";
+        char key_entered = cin.get();
+        cin.ignore(2147483647, '\n'); 
+        switch (key_entered) {
         case 'k':
-            cout << "\nKey press \"" << key_pressed << "\" detected.\n";
+            cout << "\nKey enter \"" << key_entered << "\" detected.\n";
             clear_kruskal();
             main_kruskal();
             break;
         case 'p':
-            cout << "\nKey press \"" << key_pressed << "\" detected.\n";
+            cout << "\nKey enter \"" << key_entered << "\" detected.\n";
             clear_prim();
             main_prim();
             break;
         case 'b':
-            cout << "\nKey press \"" << key_pressed << "\" detected.\n";
+            cout << "\nKey enter \"" << key_entered << "\" detected.\n";
             clear_kruskal();
             clear_prim();
             double_main();
@@ -550,9 +548,10 @@ int main() {
         case 'e':
             return 0;
         default:
-            cout << "\n\"" << key_pressed << "\" is an invalid key press! Attempt aborted.\n";
+            cout << "\n\"" << key_entered << "\" is an invalid key enter! Attempt aborted.\n";
             break;
         }
     }
     return 0;
+
 }
