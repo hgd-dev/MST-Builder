@@ -12,7 +12,7 @@ For casual users, this only downloads an executable app for easy access, suited 
 
 [![Windows](https://img.shields.io/badge/Download-Windows-blue?style=for-the-badge&logo=windows)](https://github.com/hgd-dev/MST-Builder/actions/runs/17132621900/artifacts/3820767544)
 [![macOS](https://img.shields.io/badge/Download-macOS-lightgrey?style=for-the-badge&logo=apple)](https://github.com/hgd-dev/MST-Builder/actions/runs/17132621900/artifacts/3820765405)
-[![Linux](https://img.shields.io/badge/Download-Linux-yellow?style=for-the-badge&logo=linux)](https://github.com/hgd-dev/MST-Builder/actions/runs/17130043371/artifacts/3819782945)
+[![Linux](https://img.shields.io/badge/Download-Linux-yellow?style=for-the-badge&logo=linux)](https://github.com/hgd-dev/MST-Builder/actions/runs/17132621900/artifacts/3820814308)
 
 ***Caveat for all runs:*** This project has automatic input fail-safe detectors to ensure smooth running and correct input of data. While it is built-in to catch typos or mistaken keystrokes, please refrain from deliberately attempting to break the program or use corrupted data. Undefined behavior can have unintended consequences.
 
@@ -137,6 +137,7 @@ Newton Polygon result numbers:
 
 
 - Result Numbers: Differences in x-coordinates between consecutive points in the latticed hull.
+
 
 
 
