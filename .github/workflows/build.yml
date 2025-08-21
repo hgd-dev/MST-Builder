@@ -65,22 +65,3 @@ jobs:
         with:
           name: MST-Builder-Windows
           path: build/MST-Builder-Windows.zip
-
-          
-      - name: Upload to GitHub Release Linux
-        if: runner.os == 'Linux'
-        run: |
-          cd build
-          gh release upload latest MST-Builder-Linux.tar.gz --clobber || echo "Release not found"
-      - name: Upload to GitHub Release macOS
-        if: runner.os == 'macOS'
-        run: |
-          cd build
-          gh release upload latest MST-Builder-macOS.zip --clobber || echo "Release not found"
-      - name: Upload to GitHub Release Windows
-        if: runner.os == 'Windows'
-        run: |
-          cd build
-          gh release upload latest MST-Builder-Windows.zip --clobber || echo "Release not found"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
