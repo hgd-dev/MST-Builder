@@ -122,6 +122,14 @@ void perform_kruskal()
     }
 }
 
+void aggregate_weight_kruskal() {
+    int all_weight_kruskal = 0;
+    for (weighted_edge b : mst_edges_kruskal) {
+        all_weight_kruskal += b.weight;
+    }
+    cout << "\nAggregate Minimum Spanning Tree Weight: " << all_weight_kruskal << "\n\n\n";
+}
+
 void main_kruskal()
 {
     cout << "\nPerforming Kruskal Algorithm:\n";
@@ -263,6 +271,14 @@ void perform_prim()
         sort(valid_edges.begin(), valid_edges.end(), comp);
         add_edge_prim(valid_edges[0]);
     }
+}
+
+void aggregate_weight_prim() {
+    int all_weight_prim = 0;
+    for (weighted_edge b : mst_edges_prim) {
+        all_weight_prim += b.weight;
+    }
+    cout << "\nAggregate Minimum Spanning Tree Weight: " << all_weight_prim << "\n\n\n";
 }
 
 void main_prim()
@@ -513,7 +529,6 @@ void double_main() {
     for (weighted_edge b : mst_edges_kruskal) {
         cout << "  Nodes: { " << b.node1 << ' ' << b.node2 << " }, Weight: " << b.weight << '\n';
     }
-    cout << "\n\n";
 }
 
 
@@ -533,17 +548,20 @@ int main() {
             cout << "\nKey enter \"" << key_entered << "\" detected.\n";
             clear_kruskal();
             main_kruskal();
+            aggregate_weight_kruskal();
             break;
         case 'p':
             cout << "\nKey enter \"" << key_entered << "\" detected.\n";
             clear_prim();
             main_prim();
+            aggregate_weight_prim();
             break;
         case 'b':
             cout << "\nKey enter \"" << key_entered << "\" detected.\n";
             clear_kruskal();
             clear_prim();
             double_main();
+            aggregate_weight_kruskal();
             break;
         case 'e':
             return 0;
@@ -553,5 +571,4 @@ int main() {
         }
     }
     return 0;
-
 }
