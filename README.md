@@ -91,52 +91,74 @@ g++ -std=c++17 build_mst.cpp -o MSTBuilder.exe
 ./MSTBuilder   # or NewtonPolygonizer.exe on Windows
 ```
 
-## Sample run:
-
-**Input Polynomial and Prime:**
+## Sample Terminal:
 
 ```
-p = 2
-f(x) = 4x^5 - 3x^3 + x^2 - 8x + 6
+
+Welcome to MST Builder!
+
+Select function from menu below to build a minimum spanning tree (MST):
+  Enter k to execute Kruskal's MST Algorithm
+  Enter p to execute Prim's MST Algorithm
+  Enter b to execute both MST algorithms
+  Enter e to exit this program
+b
+
+Key enter "b" detected.
+
+Executing both algorithms:
+Enter your graph's number of edges (╬╡(G)):
+4
+Input edge 1 in the form: node1 node2 weight
+a b 1
+Input edge 2 in the form: node1 node2 weight
+b c 2
+Input edge 3 in the form: node1 node2 weight
+c a 3
+Input edge 4 in the form: node1 node2 weight
+b d 4
+For Prim Algorithm: Enter any desired initial vertex, or "rand" for arbitrary choice:
+rand
+
+Starting Prim's MST Algorithm at vertex a:
+
+Performing Prim Algorithm:
+
+New edge added between nodes { a b } of weight 1
+along with new node b
+
+New edge added between nodes { b c } of weight 2
+along with new node c
+
+New edge added between nodes { b d } of weight 4
+along with new node d
+
+
+Performing Kruskal Algorithm:
+
+New edge added between nodes { a b } of weight 1
+along with new node a and new node b
+
+New edge added between nodes { b c } of weight 2
+along with new node c
+
+New edge added between nodes { b d } of weight 4
+along with new node d
+
+
+List of MST Vertices:
+a b c d
+
+List of MST Edges (Prim):
+  Nodes: { a b }, Weight: 1
+  Nodes: { b c }, Weight: 2
+  Nodes: { b d }, Weight: 4
+
+List of MST Edges (Kruskal):
+  Nodes: { a b }, Weight: 1
+  Nodes: { b c }, Weight: 2
+  Nodes: { b d }, Weight: 4
 ```
-
-**Terminal output:**
-
-```
-All Points:
-(0, 1)
-(1, 0)
-(2, 2)
-(3, 0)
-(4, 1)
-
-Convex Hull:
-(0, 1)
-(1, 0)
-(3, 0)
-(4, 1)
-
-Latticed Hull:
-(0, 1)
-(1, 0)
-(2, 0)
-(3, 0)
-(4, 1)
-
-Newton Polygon result numbers:
-1 2 1 1
-```
-
-**Explanation:**
-
-- All Points: Calculated nu-values for each coefficient.
-
-- Convex Hull: Lower boundary of the Newton Polygon.
-
-- Latticed Hull: Convex Hull plus lattice points in between.
-
-
-- Result Numbers: Differences in x-coordinates between consecutive points in the latticed hull.
 
 
 
