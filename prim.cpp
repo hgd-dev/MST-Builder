@@ -72,6 +72,13 @@ void perform_prim()
         add_edge_prim(valid_edges[0]);
     }
 }
+void aggregate_weight_prim() {
+    int all_weight_prim = 0;
+    for (weighted_edge b : mst_edges_prim) {
+        all_weight_prim += b.weight;
+    }
+    cout << "\nAggregate Minimum Spanning Tree Weight: " << all_weight_prim << '\n';
+}
 int main()
 {
     srand(time(0));
@@ -183,5 +190,6 @@ int main()
     for (weighted_edge b : mst_edges_prim) {
         cout << "  Nodes: { " << b.node1 << ' ' << b.node2 << " }, Weight: " << b.weight << '\n';
     }
+    aggregate_weight_prim();
     return 0;
 }
